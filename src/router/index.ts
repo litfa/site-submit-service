@@ -1,7 +1,7 @@
 /*
  * @Author: litfa
  * @Date: 2022-04-13 20:05:18
- * @LastEditTime: 2022-04-13 20:18:34
+ * @LastEditTime: 2022-04-14 15:08:35
  * @LastEditors: litfa
  * @Description: api路由
  * @FilePath: /service/src/router/index.ts
@@ -12,5 +12,7 @@ const router = Router()
 
 import login from './login'
 router.use('/login', login)
+import setInfo from './setInfo'
+router.use('/setInfo', setInfo)
 
 export default router
