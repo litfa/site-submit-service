@@ -1,7 +1,7 @@
 /*
  * @Author: litfa
  * @Date: 2022-04-14 17:12:21
- * @LastEditTime: 2022-04-14 20:05:22
+ * @LastEditTime: 2022-04-14 20:20:42
  * @LastEditors: litfa
  * @Description: 新增网站
  * @FilePath: /service/src/router/newSite.ts
@@ -13,7 +13,7 @@ import query from './././../utils/query';
 import fs from 'fs'
 const router = Router()
 
-const check = (host: string) => {
+const check = async (host: string) => {
   if (!host) {
     return false
   }
@@ -36,6 +36,13 @@ const check = (host: string) => {
     }
   }
   // 数据库查询
+  let [err, results] = await query('SELECT * FROM `sites` WHERE ?', {
+    host
+  })
+  if (err) return false
+  if (results.length >= 1) {
+    return false
+  }
   return true
 }
 
@@ -44,7 +51,7 @@ router.all('/check', async (req, res) => {
   if (!host) {
     return res.send({ status: 1, allow: false })
   }
-  res.send({ status: 1, allow: check(host) })
+  res.send({ status: 1, allow: await check(host) })
 })
 
 router.post('/', async (req, res) => {
@@ -53,7 +60,7 @@ router.post('/', async (req, res) => {
 
   if (!name) name = user.username
 
-  if (!check(host)) {
+  if (! await check(host)) {
     return res.send({ status: 4 })
   }
   try {
