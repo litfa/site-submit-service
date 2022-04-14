@@ -1,13 +1,13 @@
 /*
  * @Author: litfa
  * @Date: 2022-04-14 14:58:45
- * @LastEditTime: 2022-04-14 15:08:09
+ * @LastEditTime: 2022-04-14 17:12:58
  * @LastEditors: litfa
  * @Description: 设置个人信息
  * @FilePath: /service/src/router/setInfo.ts
  * 
  */
-import e, { Router } from 'express';
+import { Router } from 'express';
 import query from './././../utils/query';
 
 const router = Router()

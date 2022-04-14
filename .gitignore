@@ -1,5 +1,5 @@
 node_modules
 dist
-src/db
-src/config/config.ts
 site/*
+src/db
+src/config/
