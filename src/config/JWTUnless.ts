@@ -1,7 +1,7 @@
 /*
  * @Author: litfa
  * @Date: 2022-04-13 20:26:21
- * @LastEditTime: 2022-04-14 14:05:03
+ * @LastEditTime: 2022-04-14 15:34:25
  * @LastEditors: litfa
  * @Description: JWTUnless
  * @FilePath: /service/src/config/JWTUnless.ts
