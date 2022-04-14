@@ -83,6 +83,13 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/jsonwebtoken@^8.5.8":
+  "integrity" "sha512-zm6xBQpFDIDM6o9r6HSgDeIcLy82TKWctCXEPbJJcXb5AKmi5BNNdLXneixK4lplX3PqIVcwLBCGE/kAGnlD4A=="
+  "resolved" "https://registry.npmmirror.com/@types/jsonwebtoken/-/jsonwebtoken-8.5.8.tgz"
+  "version" "8.5.8"
+  dependencies:
+    "@types/node" "*"
+
 "@types/md5@^2.3.2":
   "integrity" "sha512-v+JFDu96+UYJ3/UWzB0mEglIS//MZXgRaJ4ubUPwOM0gvLc/kcQ3TWNYwENEK7/EcXGQVrW8h/XqednSjBd/Og=="
   "resolved" "https://registry.npmmirror.com/@types/md5/-/md5-2.3.2.tgz"

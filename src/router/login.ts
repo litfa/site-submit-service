@@ -1,7 +1,7 @@
 /*
  * @Author: litfa
  * @Date: 2022-04-13 20:06:24
- * @LastEditTime: 2022-04-14 14:11:31
+ * @LastEditTime: 2022-04-14 14:46:30
  * @LastEditors: litfa
  * @Description: 登录
  * @FilePath: /service/src/router/login.ts
@@ -11,6 +11,8 @@ import { Router } from 'express';
 import axios from 'axios'
 import config from './../config/config'
 import md5 from 'md5'
+import query from './././../utils/query';
+import jwt from './../utils/token'
 const router = Router()
 
 const createSign = (data: any, token: string): string => {
@@ -52,9 +54,39 @@ router.post('/', async (req, res) => {
       key
     }
   })
-  console.log(results)
-  if (results != 200) return res.send({ status: 5 })
-  res.send(results.data)
+  if (results.code != 200) return res.send({ status: 5 })
+  // 验证成功
+  if (results.data.status == 1) {
+    let err, results
+    // 查询是否注册过
+    [err, results] = await query('select * from users where phone=?', mobile)
+    // 找到该用户
+    if (results?.length == 1) {
+      const token = jwt({ ...results[0] })
+      return res.send({ status: 1, type: 'login', token })
+    }
+    // 若首次登录 自动注册
+    [err, results] = await query('insert into users set ?', {
+      username: `用户 ${mobile}`,
+      phone: mobile,
+      status: 1,
+      permissions: 1,
+      date: Date.now()
+    })
+    // SQL 语句执行成功，但影响行数不为 1
+    if (err || results?.affectedRows !== 1) {
+      return res.send({ status: 5, message: '登录失败，请稍后再试！' })
+    }
+    const token = jwt({
+      id: results.insertId,
+      username: `用户 ${mobile}`,
+      phone: mobile,
+      status: 1,
+      permissions: 1,
+      date: Date.now()
+    })
+    res.send({ status: 1, type: 'register', token })
+  }
 })
 
 export default router
