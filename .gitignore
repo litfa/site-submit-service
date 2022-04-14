@@ -2,3 +2,4 @@ node_modules
 dist
 src/db
 src/config/config.ts
+site/*
