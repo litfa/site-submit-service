@@ -1,7 +1,7 @@
 /*
  * @Author: litfa
  * @Date: 2022-04-13 20:06:24
- * @LastEditTime: 2022-04-14 15:34:19
+ * @LastEditTime: 2022-04-15 20:26:51
  * @LastEditors: litfa
  * @Description: 登录
  * @FilePath: /service/src/router/login.ts
@@ -63,6 +63,7 @@ router.post('/', async (req, res) => {
     // 找到该用户
     if (results?.length == 1) {
       const token = jwt({ ...results[0] })
+
       return res.send({ status: 1, type: 'login', token })
     }
     // 若首次登录 自动注册
