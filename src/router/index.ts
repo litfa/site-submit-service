@@ -1,7 +1,7 @@
 /*
  * @Author: litfa
  * @Date: 2022-04-13 20:05:18
- * @LastEditTime: 2022-04-14 20:51:38
+ * @LastEditTime: 2022-04-15 16:05:40
  * @LastEditors: litfa
  * @Description: api路由
  * @FilePath: /service/src/router/index.ts
@@ -20,5 +20,7 @@ import newSite from './newSite'
 router.use('/newSite', newSite)
 import getSite from './getSite'
 router.use('/getSite', getSite)
+import getFsAuth from './getFsAuth'
+router.use('/getFsAuth', getFsAuth)
 
 export default router
