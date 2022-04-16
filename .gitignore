@@ -3,3 +3,4 @@ dist
 site/*
 src/db
 src/config/
+site
